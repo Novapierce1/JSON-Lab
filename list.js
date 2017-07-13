@@ -1,7 +1,19 @@
 $(document).ready(function(){
     $.ajax({
-    type: "GET",
-    url:"https://www.reddit.com/r/darksouls3/comments/6mn3ie/welcome_to_dark_souls_3_git_gud_a_spoilerfree/",
-    data: JSON.stringify()
-    });
-}); 
+    method: "GET",
+    url:'https://www.reddit.com/r/darksouls3/.json'
+    })
+    .then(function(success){
+        console.log(success)
+    for (var i=1; i < 5; i++){
+    var MYdata = success.data.children[i].data.title
+    var Titlediv = document.createElement('h2')
+    document.body.append(Titlediv)
+    Titlediv.append(MYdata)
+    var MYposts = success.data.children[i].data.selftext
+    var Postdiv = document.createElement('div')
+    document.body.append(Postdiv)
+    Postdiv.append(MYposts)
+    }
+    })
+});
